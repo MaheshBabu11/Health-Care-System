@@ -1,9 +1,6 @@
 package com.cg.healthcaresystem.model;
 
-
-
 import javax.validation.constraints.NotNull;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "")
+@Table(name = "patient_record")
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

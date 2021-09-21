@@ -3,11 +3,13 @@ package com.cg.healthcaresystem.service;
 import com.cg.healthcaresystem.model.Appointment;
 import com.cg.healthcaresystem.model.DiagnosticCenter;
 import com.cg.healthcaresystem.model.DiagnosticTest;
+import com.cg.healthcaresystem.model.Patient;
 import com.cg.healthcaresystem.repository.DiagnosticCenterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
@@ -16,22 +18,33 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
 
     @Override
     public List<DiagnosticCenter> getAllDiagnosticCenters() {
-        return null;
+        return diagnosticCenterRepository.findAll();
     }
 
     @Override
     public DiagnosticCenter addDiagnosticCenter( DiagnosticCenter diagnosticCenter) {
-        return null;
+        return diagnosticCenterRepository.save( diagnosticCenter);
     }
 
     @Override
     public DiagnosticCenter getDiagnosticCenterById( Integer diagnosticCenterId) {
-        return null;
+        return diagnosticCenterRepository.getById( diagnosticCenterId);
     }
 
     @Override
     public DiagnosticCenter updateDiagnosticCenter( DiagnosticCenter diagnosticCenter) {
-        return null;
+        DiagnosticCenter dc = null;
+        Optional<DiagnosticCenter> optionalDiagnosticCenter = diagnosticCenterRepository.findById(diagnosticCenter.getId());
+        if (optionalDiagnosticCenter.isPresent())
+            dc = optionalDiagnosticCenter.get();
+        dc.setName( diagnosticCenter.getName() );
+        dc.setAddress( diagnosticCenter.getAddress() );
+        dc.setContactNo( diagnosticCenter.getContactNo() );
+        dc.setEmail( diagnosticCenter.getEmail() );
+        dc.setServicesOffered( diagnosticCenter.getServicesOffered() );
+        dc.setTests( diagnosticCenter.getTests() );
+
+        return diagnosticCenterRepository.save(dc);
     }
 
     @Override

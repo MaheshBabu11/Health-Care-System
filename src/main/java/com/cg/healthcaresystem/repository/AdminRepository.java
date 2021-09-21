@@ -1,4 +1,4 @@
-package com.cg.healthcaresystem.service.repository;
+package com.cg.healthcaresystem.repository;
 
 import com.cg.healthcaresystem.model.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;

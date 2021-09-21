@@ -20,7 +20,7 @@ public class Appointment {
     @NotNull(message="Please enter your appointment date")
     private LocalDate date;
     @NotNull(message="Please enter the approval status")
-    private Boolean ApprovalStatus;
+    private ApprovalStatus approvalStatus;
     @OneToOne(targetEntity = Diagonistic.class, cascade = CascadeType.ALL)
     @JoinColumn (name = "", referencedColumnName = "id")
     private Set<DiagonisticCenter> DiagonisticCenter Set;
@@ -40,7 +40,7 @@ public class Appointment {
 
 
 }
-}
+
 
 
 

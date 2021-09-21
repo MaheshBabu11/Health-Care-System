@@ -1,7 +1,7 @@
 package com.cg.healthcaresystem.service;
 
 import com.cg.healthcaresystem.model.Admin;
-import com.cg.healthcaresystem.service.repository.AdminRepository;
+import com.cg.healthcaresystem.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

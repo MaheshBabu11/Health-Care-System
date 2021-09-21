@@ -2,10 +2,7 @@ package com.cg.healthcaresystem.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
@@ -29,6 +26,8 @@ public class DiagnosticTest {
     private String units;
 
     //@NotNull(message= "Please Enter Diagnostic Test Centers:")
+    @OneToMany(targetEntity = DiagnosticCenter.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "", referencedColumnName = "id")
     private Set<DiagnosticCenter> diagnosticCenters;
 
 

@@ -1,13 +1,15 @@
 package com.cg.healthcaresystem.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-@Table(name = "Admin_Table")
+@NoArgsConstructor
+@Table(name = "AdminTable")
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

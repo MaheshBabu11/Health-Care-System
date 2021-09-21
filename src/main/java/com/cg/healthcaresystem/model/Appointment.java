@@ -10,10 +10,8 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "")
+@Table(name = "Appointment")
 public class Appointment {
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,20 +24,20 @@ public class Appointment {
     private boolean approvalStatus;
 
     @OneToOne(targetEntity = DiagnosticTest.class, cascade = CascadeType.ALL)
-    @JoinColumn (name = "", referencedColumnName = "id")
+    @JoinColumn (name = "diat_apmt", referencedColumnName = "id")
     private Set<DiagnosticTest> diagnosticTests;
 
     @OneToMany(targetEntity = Patient.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "", referencedColumnName = "id")
+    @JoinColumn(name = "pat_apmt", referencedColumnName = "id")
     private Set<Patient> patient;
 
     @OneToMany(targetEntity = DiagnosticCenter.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "", referencedColumnName = "id")
+    @JoinColumn(name = "diac_apmt", referencedColumnName = "id")
     private Set<Patient> diagnosticCenter;
 
 
     @OneToMany(targetEntity = TestResult.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "", referencedColumnName = "id")
+    @JoinColumn(name = "test_apmt", referencedColumnName = "id")
     private Set<TestResult> testResults;
 
 

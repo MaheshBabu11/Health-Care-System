@@ -1,6 +1,7 @@
 package com.cg.healthcaresystem.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
@@ -13,7 +14,8 @@ import static javax.persistence.GenerationType.AUTO;
 
 @Data
 @Entity
-@Table(name="Diagnostic_Center")
+@NoArgsConstructor
+@Table(name="DiagnosticCenter")
 public class DiagnosticCenter {
 
     @Id

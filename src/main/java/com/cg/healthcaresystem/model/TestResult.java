@@ -1,13 +1,15 @@
 package com.cg.healthcaresystem.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-@Table(name = "Test_Result")
+@NoArgsConstructor
+@Table(name = "TestResult")
 public class TestResult {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,6 +20,6 @@ public class TestResult {
     private String condition;
     @NotNull(message = "please enter appointment details")
     @OneToOne(targetEntity = Appointment.class, cascade = CascadeType.ALL)
-    @JoinColumn (name = "", referencedColumnName = "id")
+    @JoinColumn (name = "ap_res", referencedColumnName = "id")
     private Appointment appointment;
 }

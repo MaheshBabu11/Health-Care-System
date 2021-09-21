@@ -1,13 +1,12 @@
 package com.cg.healthcaresystem.model;
 
 
-import javax.validation.constraints.NotNull;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.validation.constraints.Size;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
 @NoArgsConstructor

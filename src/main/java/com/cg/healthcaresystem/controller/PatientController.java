@@ -44,4 +44,5 @@ public class PatientController {
         log.info("Updating a patient!!");
         patientService.updatePatientDetails(id, patient);
     }
+
 }

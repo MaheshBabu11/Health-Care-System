@@ -3,17 +3,21 @@ package com.cg.healthcaresystem.service;
 
 import com.cg.healthcaresystem.model.Appointment;
 import com.cg.healthcaresystem.model.Patient;
+import com.cg.healthcaresystem.model.TestResult;
+import com.cg.healthcaresystem.repository.AppointmentRepository;
 import com.cg.healthcaresystem.repository.PatientRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Slf4j
 @Service
 public class PatientServiceImpl implements PatientService {
     @Autowired
     private PatientRepository patientRepository;
+    private AppointmentRepository appointmentRepository;
 
     @Override
     public List<Patient> getAll() {
@@ -52,11 +56,15 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient getAllTestResult(String patientUserName) {
-       // private Integer id;
-       // private double testReading;
-      //  private String condition;
-      //  private Appointment appointment;
+        Patient patient = patientRepository.findByName(patientUserName);
+        log.info(String.valueOf(patient));
         return null;
+
+//        Optional<Appointment> appointment = appointmentRepository.findById(patient.getPatientid());
+//        if (appointment.isPresent())
+//            return appointment;
+//        else
+//            return null;
     }
 
     @Override

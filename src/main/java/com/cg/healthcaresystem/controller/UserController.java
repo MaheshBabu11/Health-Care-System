@@ -1,6 +1,7 @@
 package com.cg.healthcaresystem.controller;
 
 import com.cg.healthcaresystem.model.User;
+import com.cg.healthcaresystem.service.PatientService;
 import com.cg.healthcaresystem.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -20,31 +21,31 @@ import javax.validation.Valid;
 public class UserController {
     @Autowired
     private UserService userService;
+    private PatientService patientService;
 
     @ApiOperation("Add a new  User")
     @PostMapping("/register")
-    public ResponseEntity<User> regsiterUser(@Valid @RequestBody User user)
-    {
-        User userNew=userService.addUser(user);
+    public ResponseEntity<User> regsiterUser(@Valid @RequestBody User user) {
+        User userNew = userService.addUser(user);
         log.info("Added a new User");
         return new ResponseEntity<>(userNew, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> validateUser(@RequestBody String userName, String password){
-        User user=userService.validateUser(userName,password);
-        if(user!=null)
-            return new ResponseEntity<>(user,HttpStatus.ACCEPTED);
+    public ResponseEntity<User> validateUser(@RequestBody String userName, String password) {
+        User user = userService.validateUser(userName, password);
+        if (user != null)
+            return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
         else
-            return new ResponseEntity<>(user,HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(user, HttpStatus.FORBIDDEN);
     }
 
     @PostMapping("/remove")
-    public ResponseEntity<User> removeUser(@RequestBody User user){
-       User userRemoved= userService.removeUser(user);
-        if(userRemoved!=null)
-            return new ResponseEntity<>(user,HttpStatus.ACCEPTED);
+    public ResponseEntity<User> removeUser(@RequestBody User user) {
+        User userRemoved = userService.removeUser(user);
+        if (userRemoved != null)
+            return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
         else
-            return new ResponseEntity<>(user,HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(user, HttpStatus.FORBIDDEN);
     }
 }

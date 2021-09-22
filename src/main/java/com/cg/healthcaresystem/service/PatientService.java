@@ -1,6 +1,7 @@
 package com.cg.healthcaresystem.service;
 
 import com.cg.healthcaresystem.model.Patient;
+import com.cg.healthcaresystem.model.TestResult;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

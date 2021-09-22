@@ -24,7 +24,7 @@ public class AppointmentServiceImpl implements AppointmentService{
                 return appointment;
             }
             @Override
-            public Set<Appointment> viewAppointment (String patientName)
+            public Set<Appointment> viewAppointments(String patientName)
             {
 
 
@@ -33,13 +33,13 @@ public class AppointmentServiceImpl implements AppointmentService{
                     Appointment = optionalAppointment.get();
                 return Appointment;
             }
-            public Appointment viewAppointment (int appointmentid)
+            public Optional<Appointment> viewAppointment (int appointmentid)
             {
-
-                Optional<Appointment> optionalAppointment= appointmentrepository.findById(id);
+                Optional<Appointment> optionalAppointment= appointmentrepository.findById(appointmentid);
                 if (optionalAppointment.isPresent())
-                    Appointment = optionalAppointment.get();
-                return  Appointment;
+                        return optionalAppointment;
+                else
+                    return optionalAppointment;
             }
             public Appointment updateAppointment(Appointment appointment){
                 Appointment appointment1 = null;
@@ -52,15 +52,21 @@ public class AppointmentServiceImpl implements AppointmentService{
                 appointmentrepository.save(appointment1);
 
             }
-            public List<Appointment> getAppointment(int centreId ,String test,int status)
+            public List<Appointment> getAppointmentList(int centreId ,String test,int status)
             {
 
               return null;
             }
             public Appointment removeAppointment(Appointment appointment)
             {
-                appointmentrepository.deleteBy(id);
-               return null;
+                Optional<Appointment> appointmentOptional=appointmentrepository.findById(appointment.getId());
+                if(appointmentOptional.isPresent()) {
+                    appointmentrepository.deleteById(appointment.getId());
+                    return appointment;
+                }
+                else{
+                    return null;
+                }
             }
 
 }

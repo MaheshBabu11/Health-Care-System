@@ -38,6 +38,7 @@ public class DiagnosticTestServiceImpl implements DiagnosticTestService {
         Optional<DiagnosticTest> optionalDiagnosticTest = diagnosticTestRepository.findById(test.getId());
         if(optionalDiagnosticTest.isPresent())
             dt = optionalDiagnosticTest.get();
+
         dt.setTestName(test.getTestName());
         dt.setTestPrice(test.getTestPrice());
         dt.setNormalValue(test.getNormalValue());
@@ -47,6 +48,12 @@ public class DiagnosticTestServiceImpl implements DiagnosticTestService {
 
     @Override
     public DiagnosticTest removeTestFormDiagnosticCenter(int centerId, DiagnosticTest test){
-        return null;
+        Optional<DiagnosticTest> optionalDiagnosticTestTemp = diagnosticTestRepository.findById(test.getId());
+        if(optionalDiagnosticTestTemp.isPresent()){
+            diagnosticTestRepository.deleteById(test.getId());
+            return test;
+        }else {
+            return null;
+        }
     }
 }

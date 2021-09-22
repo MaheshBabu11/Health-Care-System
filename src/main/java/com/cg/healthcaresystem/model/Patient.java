@@ -33,6 +33,6 @@ public class Patient {
     private String gender;
 
     @OneToOne(targetEntity = Appointment.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "", referencedColumnName = "id")
+    @JoinColumn(name ="", referencedColumnName = "id")
     private List<Appointment> AppointmentList;
 }

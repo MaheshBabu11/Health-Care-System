@@ -36,6 +36,6 @@ public class DiagnosticCenter {
 
     //@NotNull(message = "Please Enter Diagnostic Tests:")
     @OneToMany(targetEntity = DiagnosticTest.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "", referencedColumnName = "id")
+    @JoinColumn(name = "ct_fk", referencedColumnName = "id")
     private Set<DiagnosticTest> tests;
 }

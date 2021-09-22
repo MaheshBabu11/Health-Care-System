@@ -1,11 +1,13 @@
 package com.cg.healthcaresystem.service;
 
+import com.cg.healthcaresystem.model.DiagnosticCenter;
 import com.cg.healthcaresystem.model.DiagnosticTest;
 import com.cg.healthcaresystem.repository.DiagnosticTestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DiagnosticTestServiceImpl implements DiagnosticTestService {
@@ -32,7 +34,14 @@ public class DiagnosticTestServiceImpl implements DiagnosticTestService {
 
     @Override
     public DiagnosticTest updateTestDetails(DiagnosticTest test){
-        
+        DiagnosticTest dt = null;
+        Optional<DiagnosticTest> optionalDiagnosticTest = diagnosticTestRepository.findById(test.getId());
+        if(optionalDiagnosticTest.isPresent())
+            dt = optionalDiagnosticTest.get();
+        dt.setTestName(test.getTestName());
+        dt.setTestPrice(test.getTestPrice());
+        dt.setNormalValue(test.getNormalValue());
+        dt.setUnits(test.getUnits());
         return null;
     }
 

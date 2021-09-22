@@ -11,9 +11,10 @@ public interface PatientService {
 
     public Patient registerPatient(Patient patient);
     void updatePatientDetails(int id,Patient patient);
-    Patient viewPatient(int id, Patient patient);
+    public Patient viewPatient(int id);
     public Patient getAllTestResult(String patientUserName);
     public Patient viewTestResult(int testResultId);
+
 
 
 }

@@ -42,8 +42,8 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient viewPatient(int id, Patient patient) {
-
+    public Patient viewPatient(int id) {
+        Patient patient=null;
         Optional<Patient> optionalPatient = patientRepository.findById(id);
         if (optionalPatient.isPresent())
             patient = optionalPatient.get();

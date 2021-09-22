@@ -59,16 +59,26 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
 
     @Override
     public DiagnosticCenter getDiagnosticCenter( String centerName) {
-        return null;
+        List<DiagnosticCenter> dcs= diagnosticCenterRepository.findByName(centerName);
+        return dcs.get(0);
     }
 
     @Override
     public DiagnosticCenter removeDiagnosticCenter( Integer id) {
-        return null;
+        DiagnosticCenter dc = null;
+        Optional<DiagnosticCenter> optionalDiagnosticCenter = diagnosticCenterRepository.findById(id);
+        if (optionalDiagnosticCenter.isPresent())
+            dc = optionalDiagnosticCenter.get();
+        diagnosticCenterRepository.deleteById(id);
+        return  dc;
     }
 
     @Override
     public List<Appointment> getListOfAppointments(String centerName) {
+        /*
+        DiagnosticCenter dc = null;
+        List<DiagnosticCenter> dcs= diagnosticCenterRepository.findByName(centerName);
+        */
         return null;
     }
 

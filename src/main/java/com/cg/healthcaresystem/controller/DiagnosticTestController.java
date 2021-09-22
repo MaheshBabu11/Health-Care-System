@@ -28,7 +28,7 @@ public class DiagnosticTestController {
     }
 
     @ApiOperation("Add new Test")
-    @PostMapping("/addtest")
+    @PostMapping("/adddiagnostictest")
     public ResponseEntity<DiagnosticTest> addNewTest(@Valid @RequestBody DiagnosticTest test){
         DiagnosticTest newTest = diagnosticTestService.addNewTest(test);
         log.info("Added new test");
@@ -43,17 +43,17 @@ public class DiagnosticTestController {
     }
 
     @ApiOperation("Update test")
-    @PutMapping("/updatetest")
+    @PutMapping("/updatediagnostictest")
     public ResponseEntity<DiagnosticTest> updateTestDetails(@Valid @RequestBody DiagnosticTest test){
 
         return null;
     }
 
-    @ApiOperation("Remove test from diagnostic center")
-    @DeleteMapping("/removetest")
-    public ResponseEntity<DiagnosticTest> removeTestFormDiagnosticCenter(@Valid @RequestBody DiagnosticTest test){
-
-        return null;
-    }
+//    @ApiOperation("Remove test from diagnostic center")
+//    @DeleteMapping("/removediagnostictest")
+//    public ResponseEntity<DiagnosticTest> removeTestFormDiagnosticCenter(@Valid @RequestBody DiagnosticTest test){
+//
+//        return null;
+//    }
 
 }

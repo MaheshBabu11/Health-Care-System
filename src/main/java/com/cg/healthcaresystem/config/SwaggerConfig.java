@@ -27,7 +27,7 @@ public class SwaggerConfig {
 
     private ApiInfo metaData(){
         return new ApiInfoBuilder()
-                .title("Customer REST APIs")
+                .title("HEALTH CARE SYSTEM REST APIs")
                 .description("\"Swagger Configuration for Application\"")
                 .version("1.2.0")
                 .license("Apache License")

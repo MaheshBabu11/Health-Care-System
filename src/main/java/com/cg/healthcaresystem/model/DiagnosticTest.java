@@ -1,11 +1,9 @@
 package com.cg.healthcaresystem.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
@@ -13,7 +11,8 @@ import static javax.persistence.GenerationType.AUTO;
 
 @Data
 @Entity
-@Table(name = "Diagnostic_Test")
+@NoArgsConstructor
+@Table(name = "DiagnosticTest")
 public class DiagnosticTest {
     @Id
     @GeneratedValue(strategy = AUTO)
@@ -29,6 +28,8 @@ public class DiagnosticTest {
     private String units;
 
     //@NotNull(message= "Please Enter Diagnostic Test Centers:")
+    @OneToMany(targetEntity = DiagnosticCenter.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "", referencedColumnName = "id")
     private Set<DiagnosticCenter> diagnosticCenters;
 
 

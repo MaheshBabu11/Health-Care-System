@@ -10,28 +10,39 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "")
+@Table(name = "Appointment")
 public class Appointment {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     @NotNull(message="Please enter your appointment date")
     private LocalDate date;
+
     @NotNull(message="Please enter the approval status")
-    private Boolean ApprovalStatus;
-    @OneToOne(targetEntity = Diagonistic.class, cascade = CascadeType.ALL)
-    @JoinColumn (name = "", referencedColumnName = "id")
-    private Set<DiagonisticCenter> DiagonisticCenter Set;
+    private boolean approvalStatus;
+
+    @OneToOne(targetEntity = DiagnosticTest.class, cascade = CascadeType.ALL)
+    @JoinColumn (name = "diat_apmt", referencedColumnName = "id")
+    private Set<DiagnosticTest> diagnosticTests;
+
+    @OneToMany(targetEntity = Patient.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "pat_apmt", referencedColumnName = "id")
+    private Set<Patient> patient;
+
+    @OneToMany(targetEntity = DiagnosticCenter.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "diac_apmt", referencedColumnName = "id")
+    private Set<Patient> diagnosticCenter;
+
+
     @OneToMany(targetEntity = TestResult.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "", referencedColumnName = "id")
-    private Set<TestResult> TestResult Set;
-    @OneToOne(targetEntity = patient.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "", referencedColumnName = "id")
-    @OneToMany-(targetEntity = DiagonisticTest.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "", referencedColumnName = "id")
-    private Set<DiagonisticTest> DiagonisticTest Set;
+    @JoinColumn(name = "test_apmt", referencedColumnName = "id")
+    private Set<TestResult> testResults;
+
+
+
+
 
 
 
@@ -40,7 +51,7 @@ public class Appointment {
 
 
 }
-}
+
 
 
 

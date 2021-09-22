@@ -28,7 +28,7 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
 
     @Override
     public DiagnosticCenter getDiagnosticCenterById( Integer diagnosticCenterId) {
-        return diagnosticCenterRepository.getById( diagnosticCenterId);
+        return diagnosticCenterRepository.findById(diagnosticCenterId).get();
     }
 
     @Override

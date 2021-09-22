@@ -38,4 +38,13 @@ public class UserController {
         else
             return new ResponseEntity<>(user,HttpStatus.FORBIDDEN);
     }
+
+    @PostMapping("/remove")
+    public ResponseEntity<User> removeUser(@RequestBody User user){
+       User userRemoved= userService.removeUser(user);
+        if(userRemoved!=null)
+            return new ResponseEntity<>(user,HttpStatus.ACCEPTED);
+        else
+            return new ResponseEntity<>(user,HttpStatus.FORBIDDEN);
+    }
 }

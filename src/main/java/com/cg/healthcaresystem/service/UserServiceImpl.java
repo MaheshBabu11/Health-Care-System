@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService{
     @Autowired
@@ -32,6 +34,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User removeUser(User user) {
-        return null;
+       Optional<User> userTemp=userRepository.findById(user.getId());
+       if(userTemp.isPresent()) {
+           userRepository.deleteById(user.getId());
+           return user;
+       }
+       else
+           return null;
     }
 }

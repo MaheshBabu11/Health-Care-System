@@ -4,17 +4,23 @@ import com.cg.healthcaresystem.model.Appointment;
 import com.cg.healthcaresystem.model.DiagnosticCenter;
 import com.cg.healthcaresystem.model.DiagnosticTest;
 import com.cg.healthcaresystem.model.Patient;
+import com.cg.healthcaresystem.repository.AppointmentRepository;
 import com.cg.healthcaresystem.repository.DiagnosticCenterRepository;
+import com.cg.healthcaresystem.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
 
     @Autowired DiagnosticCenterRepository diagnosticCenterRepository;
+    @Autowired TestRepository testRepository;
+    @Autowired
+    AppointmentRepository appointmentRepository;
 
     @Override
     public List<DiagnosticCenter> getAllDiagnosticCenters() {
@@ -54,7 +60,13 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
 
     @Override
     public DiagnosticTest addTest( Integer diagnosticCenterId, Integer testId) {
-        return null;
+        DiagnosticTest t= testRepository.getById(testId);
+        DiagnosticCenter c=diagnosticCenterRepository.getById(diagnosticCenterId);
+        c.getTests().add(t);
+        t.getDiagnosticCenters().add(c);
+        testRepository.saveAndFlush(t);
+        diagnosticCenterRepository.saveAndFlush(c);
+        return t;
     }
 
     @Override
@@ -75,11 +87,8 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
 
     @Override
     public List<Appointment> getListOfAppointments(String centerName) {
-        /*
-        DiagnosticCenter dc = null;
-        List<DiagnosticCenter> dcs= diagnosticCenterRepository.findByName(centerName);
-        */
-        return null;
+        DiagnosticCenter dc= diagnosticCenterRepository.findByName(centerName).get(0);
+        return appointmentRepository.findByDiagnosticCenter(dc);
     }
 
 }

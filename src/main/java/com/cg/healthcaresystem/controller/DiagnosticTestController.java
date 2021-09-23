@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @RestController
@@ -37,23 +38,24 @@ public class DiagnosticTestController {
 
     @ApiOperation("")
     @GetMapping("/gettestofdiagnosticcenter")
-    public DiagnosticTest getTestOfDiagnosticCenter(@PathVariable int centerId){
-
-        return null;
+    public Set<DiagnosticTest> getTestOfDiagnosticCenter(@PathVariable int centerId){
+        log.info("Fectch Test of Diagnostic Center");
+        return diagnosticTestService.getTestOfDiagnosticCenter(centerId);
     }
 
     @ApiOperation("Update test")
     @PutMapping("/updatediagnostictest")
     public ResponseEntity<DiagnosticTest> updateTestDetails(@Valid @RequestBody DiagnosticTest test){
+        DiagnosticTest updateDiagnosticTest = diagnosticTestService.updateTestDetails(test);
+        log.info("Update Diagnostic Test Details");
+        return new ResponseEntity<>(updateDiagnosticTest,HttpStatus.ACCEPTED);
+    }
+
+    @ApiOperation("Remove test from diagnostic center")
+    @DeleteMapping("/removediagnostictest")
+    public ResponseEntity<DiagnosticTest> removeTestFormDiagnosticCenter(@PathVariable int centerId, @Valid @RequestBody DiagnosticTest test){
 
         return null;
     }
-
-//    @ApiOperation("Remove test from diagnostic center")
-//    @DeleteMapping("/removediagnostictest")
-//    public ResponseEntity<DiagnosticTest> removeTestFormDiagnosticCenter(@Valid @RequestBody DiagnosticTest test){
-//
-//        return null;
-//    }
 
 }

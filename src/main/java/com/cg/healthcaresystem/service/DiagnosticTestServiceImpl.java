@@ -32,9 +32,10 @@ public class DiagnosticTestServiceImpl implements DiagnosticTestService {
     }
 
     @Override
-    public List<DiagnosticTest> getTestOfDiagnosticCenter(int centerId){
+    public Set<DiagnosticTest> getTestOfDiagnosticCenter(int centerId){
+        DiagnosticCenter c = diagnosticCenterRepository.findById(centerId).get();
 
-        return null;
+        return c.getTests();
     }
 
     @Override

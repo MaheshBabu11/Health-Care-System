@@ -48,7 +48,7 @@ public class DiagnosticTestServiceImpl implements DiagnosticTestService {
         dt.setTestPrice(test.getTestPrice());
         dt.setNormalValue(test.getNormalValue());
         dt.setUnits(test.getUnits());
-        return null;
+        return diagnosticTestRepository.save(dt);
     }
 
     @Override

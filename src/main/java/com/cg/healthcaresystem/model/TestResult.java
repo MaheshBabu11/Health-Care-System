@@ -1,5 +1,6 @@
 package com.cg.healthcaresystem.model;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,3 +24,4 @@ public class TestResult {
     @JoinColumn (name = "ap_res", referencedColumnName = "id")
     private Appointment appointment;
 }
+

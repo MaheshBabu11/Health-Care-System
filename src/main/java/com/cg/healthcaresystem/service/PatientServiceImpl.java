@@ -1,17 +1,18 @@
 package com.cg.healthcaresystem.service;
 
 
-import com.cg.healthcaresystem.model.Appointment;
-import com.cg.healthcaresystem.model.Patient;
-import com.cg.healthcaresystem.model.TestResult;
+import com.cg.healthcaresystem.model.*;
 import com.cg.healthcaresystem.repository.AppointmentRepository;
 import com.cg.healthcaresystem.repository.PatientRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
 @Slf4j
 @Service
 public class PatientServiceImpl implements PatientService {
@@ -69,6 +70,23 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient viewTestResult(int testResultId) {
+       /* Patient c= PatientRepository.findById(testResultId).get();
+        Set<DiagnosticTest> tests= c.getTests();
+        Iterator<PatientTest> value= tests.iterator();
+        int flag=0;
+        for(PatientTest t: tests)
+        {
+            if(t.getTestName().equals(testName))
+            {
+                flag++;
+            }
+        }
+        if(flag>0)
+        {
+            PatientTest test= diagnosticTestRepository.findByTestName(testName).get(0);
+            return test;
+
+        } */
 
         return null;
     }

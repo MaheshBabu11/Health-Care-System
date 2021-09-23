@@ -2,18 +2,23 @@ package com.cg.healthcaresystem.service;
 
 import com.cg.healthcaresystem.model.DiagnosticCenter;
 import com.cg.healthcaresystem.model.DiagnosticTest;
+import com.cg.healthcaresystem.repository.DiagnosticCenterRepository;
 import com.cg.healthcaresystem.repository.DiagnosticTestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class DiagnosticTestServiceImpl implements DiagnosticTestService {
 
     @Autowired
     private DiagnosticTestRepository diagnosticTestRepository;
+
+    @Autowired
+    private DiagnosticCenterRepository diagnosticCenterRepository;
 
     @Override
     public List<DiagnosticTest> getAllTest(){
@@ -48,12 +53,8 @@ public class DiagnosticTestServiceImpl implements DiagnosticTestService {
 
     @Override
     public DiagnosticTest removeTestFormDiagnosticCenter(int centerId, DiagnosticTest test){
-        Optional<DiagnosticTest> optionalDiagnosticTestTemp = diagnosticTestRepository.findById(test.getId());
-        if(optionalDiagnosticTestTemp.isPresent()){
-            diagnosticTestRepository.deleteById(test.getId());
-            return test;
-        }else {
-            return null;
-        }
+        DiagnosticCenter c = diagnosticCenterRepository.findById(centerId).get();
+        Set<DiagnosticTest> tests = c.getTests();
+        return  null;
     }
 }

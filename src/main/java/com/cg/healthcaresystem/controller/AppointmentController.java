@@ -2,7 +2,7 @@ package com.cg.healthcaresystem.controller;
 
 import com.cg.healthcaresystem.model.Appointment;
 import com.cg.healthcaresystem.service.AppointmentService;
-import io.swagger.annotations.ApiOperation;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +20,8 @@ import java.util.Set;
 public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
+    
+
     @PostMapping("/add")
     public ResponseEntity<Appointment> addAppointment(@Valid @RequestBody Appointment appointment)
     {
@@ -40,9 +42,9 @@ public class AppointmentController {
         return new ResponseEntity<>(appointments,HttpStatus.NO_CONTENT);
     }
     @GetMapping("/view by id")
-    public ResponseEntity<Optional<Appointment>> viewAppointment(@RequestBody int appointmentId)
+    public ResponseEntity<Optional<Appointment>> viewAppointment( @RequestBody int appointmentId)
     {
-        //  return ResponseEntity.ok(this.appointmentService.viewAppointment(appointmentId));
+
         Optional<Appointment> appointments =appointmentService.viewAppointment(appointmentId);
         return new ResponseEntity<>(appointments,HttpStatus.UPGRADE_REQUIRED);
     }
@@ -53,11 +55,8 @@ public class AppointmentController {
         return new ResponseEntity<>(appointments,HttpStatus.UPGRADE_REQUIRED);
     }
     @GetMapping("view list of appointment  ")
-    public ResponseEntity<List<Appointment>> getAppointmentList(@RequestBody int centreId, @RequestBody String test, @RequestBody int Status)
+    public ResponseEntity<List<Appointment>> getAppointmentList(@RequestBody int centreId,@RequestBody String test,@RequestBody int Status)
     {
         return ResponseEntity.ok(this.appointmentService.getAppointmentList(centreId,test,Status));
     }
-}
-
-
 }

@@ -46,6 +46,12 @@ public class DiagnosticCenterController {
         return ResponseEntity.ok(this.diagnosticCenterService.updateDiagnosticCenter(diagnosticCenter));
     }
 
+    @GetMapping("/viewtest/{centerId}/{testName}")
+    public ResponseEntity<DiagnosticTest> viewTestDetails(@PathVariable Integer centerId,@PathVariable String testName)
+    {
+        return ResponseEntity.ok(this.diagnosticCenterService.viewTestDetails(centerId,testName));
+    }
+
     @PostMapping("/addtest/{diagnosticcenterId}/{testid}")
     public ResponseEntity<DiagnosticTest> addTest(@PathVariable Integer diagnosticcenterId, @PathVariable Integer testid)
     {

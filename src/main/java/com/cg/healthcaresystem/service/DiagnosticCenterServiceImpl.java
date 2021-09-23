@@ -11,6 +11,7 @@ import com.cg.healthcaresystem.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -20,8 +21,7 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
 
     @Autowired DiagnosticCenterRepository diagnosticCenterRepository;
     @Autowired DiagnosticTestRepository diagnosticTestRepository;
-    @Autowired
-    AppointmentRepository appointmentRepository;
+    @Autowired AppointmentRepository appointmentRepository;
 
     @Override
     public List<DiagnosticCenter> getAllDiagnosticCenters() {
@@ -56,12 +56,27 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
 
     @Override
     public DiagnosticTest viewTestDetails(Integer diagnosticCenterId, String testName){
+        DiagnosticCenter c= diagnosticCenterRepository.findById(diagnosticCenterId).get();
+        Set<DiagnosticTest> tests= c.getTests();
+        Iterator<DiagnosticTest> value= tests.iterator();
+        int flag=0;
+        for(DiagnosticTest t: tests)
+        {
+            if(t.getTestName().equals(testName))
+            {
+                flag++;
+            }
+        }
+        if(flag>0)
+        {
+            DiagnosticTest test= diagnosticTestRepository.findByTestName(testName).get(0);
+            return test;
+            //diagnosticTestRepository.findByTestName(testName);
+        }
+        /*while (value.hasNext()) {
+            DiagnosticTest t= value.next();
+        }*/
         return null;
-    }
-
-    @Override
-    public DiagnosticTest getDiagnosticTestById( Integer diagnosticTestId) {
-        return diagnosticTestRepository.findById(diagnosticTestId).get();
     }
 
     @Override
@@ -103,6 +118,11 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
     public List<Appointment> getListOfAppointments(String centerName) {
         DiagnosticCenter dc= diagnosticCenterRepository.findByName(centerName).get(0);
         return appointmentRepository.findByDiagnosticCenter(dc);
+    }
+
+    @Override
+    public DiagnosticTest getDiagnosticTestById( Integer diagnosticTestId) {
+        return diagnosticTestRepository.findById(diagnosticTestId).get();
     }
 
 }

@@ -6,6 +6,7 @@ import com.cg.healthcaresystem.model.DiagnosticTest;
 import com.cg.healthcaresystem.model.Patient;
 import com.cg.healthcaresystem.repository.AppointmentRepository;
 import com.cg.healthcaresystem.repository.DiagnosticCenterRepository;
+import com.cg.healthcaresystem.repository.DiagnosticTestRepository;
 import com.cg.healthcaresystem.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ import java.util.Set;
 public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
 
     @Autowired DiagnosticCenterRepository diagnosticCenterRepository;
-    @Autowired TestRepository testRepository;
+    @Autowired DiagnosticTestRepository diagnosticTestRepository;
     @Autowired
     AppointmentRepository appointmentRepository;
 
@@ -59,12 +60,25 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
     }
 
     @Override
+    public DiagnosticTest getDiagnosticTestById( Integer diagnosticTestId) {
+        return diagnosticTestRepository.findById(diagnosticTestId).get();
+    }
+
+    @Override
     public DiagnosticTest addTest( Integer diagnosticCenterId, Integer testId) {
-        DiagnosticTest t= testRepository.getById(testId);
-        DiagnosticCenter c=diagnosticCenterRepository.getById(diagnosticCenterId);
-        c.getTests().add(t);
-        t.getDiagnosticCenters().add(c);
-        testRepository.saveAndFlush(t);
+        //DiagnosticTest t= testRepository.getById(testId);
+        DiagnosticTest t=diagnosticTestRepository.findById(testId).get();
+        DiagnosticCenter c=diagnosticCenterRepository.findById(diagnosticCenterId).get();
+        DiagnosticCenter c1=diagnosticCenterRepository.findById(diagnosticCenterId).get();
+        Set<DiagnosticTest> newTests= c.getTests();
+        newTests.add(t);
+        c.setTests(newTests);
+        /*Set<DiagnosticCenter> newDiagnosticCenters =t.getDiagnosticCenters();
+        newDiagnosticCenters.add(c1);
+        t.setDiagnosticCenters(newDiagnosticCenters);*/
+        //c.getTests().add(t);
+        //t.getDiagnosticCenters().add(c);
+        diagnosticTestRepository.saveAndFlush(t);
         diagnosticCenterRepository.saveAndFlush(c);
         return t;
     }
@@ -76,13 +90,13 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
     }
 
     @Override
-    public DiagnosticCenter removeDiagnosticCenter( Integer id) {
+    public List<DiagnosticCenter> removeDiagnosticCenter( Integer id) {
         DiagnosticCenter dc = null;
         Optional<DiagnosticCenter> optionalDiagnosticCenter = diagnosticCenterRepository.findById(id);
         if (optionalDiagnosticCenter.isPresent())
             dc = optionalDiagnosticCenter.get();
         diagnosticCenterRepository.deleteById(id);
-        return  dc;
+        return  diagnosticCenterRepository.findAll();
     }
 
     @Override

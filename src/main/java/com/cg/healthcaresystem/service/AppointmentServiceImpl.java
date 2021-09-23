@@ -4,7 +4,9 @@ package com.cg.healthcaresystem.service;
 
 
 import com.cg.healthcaresystem.model.Appointment;
+import com.cg.healthcaresystem.model.Patient;
 import com.cg.healthcaresystem.repository.AppointmentRepository;
+import com.cg.healthcaresystem.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Set;
@@ -15,6 +17,7 @@ import java.util.Optional;
 public class AppointmentServiceImpl implements AppointmentService{
             @Autowired
             private AppointmentRepository appointmentrepository;
+            private PatientRepository patientRepository;
 
             @Override
             public Appointment addAppointment(Appointment appointment)
@@ -26,12 +29,9 @@ public class AppointmentServiceImpl implements AppointmentService{
             @Override
             public Set<Appointment> viewAppointments(String patientName)
             {
+                Patient patient=patientRepository.findByName(patientName);
+                return (Set<Appointment>) patient.getAppointmentList();
 
-
-                Optional<List<Appointment>> optionalAppointment= appointmentrepository.findById(id);
-                if (optionalAppointment.isPresent())
-                    Appointment = optionalAppointment.get();
-                return Appointment;
             }
             public Optional<Appointment> viewAppointment (int appointmentid)
             {
@@ -43,13 +43,14 @@ public class AppointmentServiceImpl implements AppointmentService{
             }
             public Appointment updateAppointment(Appointment appointment){
                 Appointment appointment1 = null;
-                Optional<Appointment> optionalAppointment = appointmentrepository.findById(id);
+                Optional<Appointment> optionalAppointment = appointmentrepository.findById(appointment.getId());
                 if (optionalAppointment.isPresent())
                     appointment1 = optionalAppointment.get();
                 appointment1.setDate(appointment.getDate());
-               appointment1.setApprovalStatus(appointment.getApprovalStatus());
+               appointment1.setApprovalStatus(appointment.isApprovalStatus());
 
                 appointmentrepository.save(appointment1);
+                return appointment1;
 
             }
             public List<Appointment> getAppointmentList(int centreId ,String test,int status)

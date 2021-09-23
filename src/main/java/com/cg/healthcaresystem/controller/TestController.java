@@ -31,14 +31,17 @@ public class TestController {
     @ApiOperation("update test")
     @PutMapping("/updatetest")
     public ResponseEntity<DiagnosticTest> updateTest(@Valid @RequestBody DiagnosticTest test){
-        return null;
+        DiagnosticTest updateTest = testService.updateTest(test);
+        log.info("Update test");
+        return new ResponseEntity<>(updateTest,HttpStatus.ACCEPTED);
     }
 
     @ApiOperation("delete test")
     @DeleteMapping("/removetest")
-    public ResponseEntity<DiagnosticTest>  removeTest(@Valid @RequestBody DiagnosticTest test){
-
-        return null;
+    public ResponseEntity<DiagnosticTest> removeTest(@Valid @RequestBody DiagnosticTest test){
+        DiagnosticTest deleteTest = testService.removeTest(test);
+        log.info("Remove test");
+        return new ResponseEntity<>(deleteTest,HttpStatus.NO_CONTENT);
     }
 
     @ApiOperation("view all the test")

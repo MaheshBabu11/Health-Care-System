@@ -24,8 +24,11 @@ public interface DiagnosticCenterService {
 
     public DiagnosticCenter getDiagnosticCenter( String centerName);
 
-    public DiagnosticCenter removeDiagnosticCenter( Integer id);
+    public List<DiagnosticCenter> removeDiagnosticCenter( Integer id);
 
     public List<Appointment> getListOfAppointments(String centerName);
+
+    //Temp
+    public DiagnosticTest getDiagnosticTestById( Integer diagnosticTestId);
 
 }

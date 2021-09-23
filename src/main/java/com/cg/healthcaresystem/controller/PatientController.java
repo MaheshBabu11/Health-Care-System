@@ -1,5 +1,6 @@
 package com.cg.healthcaresystem.controller;
 
+import com.cg.healthcaresystem.model.DiagnosticTest;
 import com.cg.healthcaresystem.model.Patient;
 import com.cg.healthcaresystem.service.PatientService;
 import io.swagger.annotations.ApiOperation;
@@ -27,14 +28,14 @@ public class PatientController {
         return patientService.getAll();
     }
     @ApiOperation("Save a New Patient Record!")
-    @PostMapping("/create")
+    @PostMapping("/register")
     public ResponseEntity<Patient> createPatient(@Valid @RequestBody Patient patient) {
         log.info("Inside Patient %s", patient);
         Patient pt = patientService.registerPatient(patient);
         return new ResponseEntity<>(pt, HttpStatus.CREATED);
     }
     @ApiOperation("Get A Patient By ID")
-    @GetMapping("/getbyid/{id}")
+    @GetMapping("/view/{id}")
     public Patient fetchById(@PathVariable int id) {
         return patientService.viewPatient(id);
     }
@@ -44,5 +45,16 @@ public class PatientController {
         log.info("Updating a patient!!");
         patientService.updatePatientDetails(id, patient);
     }
+    @GetMapping("/getAllTestResult/{patientUserName}")
+    public ResponseEntity<Patient> viewTestDetails(@PathVariable String patientUserName)
+    {
+        return ResponseEntity.ok(this.patientService.getAllTestResult(patientUserName));
+    }
+
+   /* @PostMapping("/addtest/{diagnosticcenterId}/{testid}")
+    public ResponseEntity<DiagnosticTest> addTest(@PathVariable Integer diagnosticcenterId, @PathVariable Integer testid)
+    {
+        return ResponseEntity.ok(this.diagnosticCenterService.addTest(diagnosticcenterId,testid));
+    } */
 
 }

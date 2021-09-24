@@ -21,19 +21,6 @@ public class TestResultServiceImpl implements TestResultService{
     @Override
     public TestResult updateTestResult(TestResult testResult) {
 
-        /*DiagnosticCenter dc = null;
-        Optional<DiagnosticCenter> optionalDiagnosticCenter = diagnosticCenterRepository.findById(diagnosticCenter.getId());
-        if (optionalDiagnosticCenter.isPresent())
-            dc = optionalDiagnosticCenter.get();
-        dc.setName( diagnosticCenter.getName() );
-        dc.setAddress( diagnosticCenter.getAddress() );
-        dc.setContactNo( diagnosticCenter.getContactNo() );
-        dc.setEmail( diagnosticCenter.getEmail() );
-        dc.setServicesOffered( diagnosticCenter.getServicesOffered() );
-        dc.setTests( diagnosticCenter.getTests() );
-
-        return diagnosticCenterRepository.save(dc);
-        */
         TestResult tr=null;
         Optional<TestResult> optionalTestResult= testResultRepository.findById(testResult.getId());
         if(optionalTestResult.isPresent())

@@ -35,4 +35,13 @@ public class Patient {
     @OneToOne(targetEntity = Appointment.class, cascade = CascadeType.ALL)
     @JoinColumn(name ="", referencedColumnName = "id")
     private List<Appointment> AppointmentList;
+
+   /* public Patient(Integer patientid, String name, String phoneNo, Integer age, String gender) {
+        this.patientid = patientid;
+        this.name = name;
+        this.phoneNo = phoneNo;
+        this.age = age;
+        this.gender = gender;
+    } */
 }
+

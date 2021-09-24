@@ -35,7 +35,7 @@ public class AppointmentController {
         return new ResponseEntity<>(appointments,HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete by id")
     public ResponseEntity<Appointment> removeAppointment(@RequestBody Appointment appointment)
     {
         Appointment appointments=appointmentService.removeAppointment(appointment);

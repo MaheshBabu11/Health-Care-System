@@ -19,7 +19,7 @@ public class TestResult {
     private double testReading;
     @NotNull(message = "please enter condition")
     private String condition;
-    //@NotNull(message = "please enter appointment details")
+
     @OneToOne(targetEntity = Appointment.class, cascade = CascadeType.ALL)
     @JoinColumn (name = "ap_res", referencedColumnName = "id")
     private Appointment appointment;

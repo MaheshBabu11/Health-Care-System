@@ -51,10 +51,6 @@ public class PatientController {
         return ResponseEntity.ok(this.patientService.getAllTestResult(patientUserName));
     }
 
-   /* @PostMapping("/addtest/{diagnosticcenterId}/{testid}")
-    public ResponseEntity<DiagnosticTest> addTest(@PathVariable Integer diagnosticcenterId, @PathVariable Integer testid)
-    {
-        return ResponseEntity.ok(this.diagnosticCenterService.addTest(diagnosticcenterId,testid));
-    } */
+
 
 }

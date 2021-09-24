@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TestServiceImpl implements TestService {
@@ -18,15 +19,29 @@ public class TestServiceImpl implements TestService {
         testRepository.save(test);
         return test;
     }
-
     @Override
     public DiagnosticTest updateTest(DiagnosticTest test){
-        return null;
+        DiagnosticTest dt = null;
+        Optional<DiagnosticTest> optionalDiagnosticTest = testRepository.findById(test.getId());
+        if(optionalDiagnosticTest.isPresent())
+            dt = optionalDiagnosticTest.get();
+
+        dt.setTestName(test.getTestName());
+        dt.setTestPrice(test.getTestPrice());
+        dt.setNormalValue(test.getNormalValue());
+        dt.setUnits(test.getUnits());
+        return testRepository.save(dt);
     }
 
     @Override
     public DiagnosticTest removeTest(DiagnosticTest test){
-        return null;
+        Optional<DiagnosticTest> optionalDiagnosticTest = testRepository.findById(test.getId());
+        if(optionalDiagnosticTest.isPresent()){
+            testRepository.deleteById(test.getId());
+            return test;
+        }else {
+            return null;
+        }
     }
 
     @Override

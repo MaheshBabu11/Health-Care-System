@@ -4,6 +4,7 @@ import com.cg.healthcaresystem.model.DiagnosticTest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public interface DiagnosticTestService {
@@ -11,7 +12,7 @@ public interface DiagnosticTestService {
 
     public DiagnosticTest addNewTest(DiagnosticTest test);
 
-    public List<DiagnosticTest> getTestOfDiagnosticCenter(int centerId);
+    public Set<DiagnosticTest> getTestOfDiagnosticCenter(int centerId);
 
     public DiagnosticTest updateTestDetails(DiagnosticTest test);
 

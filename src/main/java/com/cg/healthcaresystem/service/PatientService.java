@@ -1,5 +1,6 @@
 package com.cg.healthcaresystem.service;
 
+import com.cg.healthcaresystem.model.DiagnosticCenter;
 import com.cg.healthcaresystem.model.Patient;
 import com.cg.healthcaresystem.model.TestResult;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,6 @@ public interface PatientService {
     void updatePatientDetails(int id,Patient patient);
     public Patient viewPatient(int id);
     public Patient getAllTestResult(String patientUserName);
-    public Patient viewTestResult(int testResultId);
-
-
+    public List<Patient> viewTestResult();
 
 }

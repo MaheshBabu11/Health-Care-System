@@ -61,34 +61,11 @@ public class PatientServiceImpl implements PatientService {
         log.info(String.valueOf(patient));
         return null;
 
-//        Optional<Appointment> appointment = appointmentRepository.findById(patient.getPatientid());
-//        if (appointment.isPresent())
-//            return appointment;
-//        else
-//            return null;
     }
-
     @Override
-    public Patient viewTestResult(int testResultId) {
-       /* Patient c= PatientRepository.findById(testResultId).get();
-        Set<DiagnosticTest> tests= c.getTests();
-        Iterator<PatientTest> value= tests.iterator();
-        int flag=0;
-        for(PatientTest t: tests)
-        {
-            if(t.getTestName().equals(testName))
-            {
-                flag++;
-            }
-        }
-        if(flag>0)
-        {
-            PatientTest test= diagnosticTestRepository.findByTestName(testName).get(0);
-            return test;
+    public List<Patient> viewTestResult() {
 
-        } */
-
-        return null;
+        return patientRepository.findAll();
     }
 
 

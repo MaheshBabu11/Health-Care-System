@@ -46,11 +46,15 @@ public class PatientController {
         patientService.updatePatientDetails(id, patient);
     }
     @GetMapping("/getAllTestResult/{patientUserName}")
-    public ResponseEntity<Patient> viewTestDetails(@PathVariable String patientUserName)
+    public ResponseEntity<Patient> getAllTestResult(@PathVariable String patientUserName)
     {
         return ResponseEntity.ok(this.patientService.getAllTestResult(patientUserName));
     }
 
-
+    @GetMapping("/viewTestResult")
+    public List<Patient> viewTestResult() {
+        log.info("INSIDE Patient TestResults!!");
+        return patientService.viewTestResult();
+    }
 
 }

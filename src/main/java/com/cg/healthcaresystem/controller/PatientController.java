@@ -2,6 +2,7 @@ package com.cg.healthcaresystem.controller;
 
 import com.cg.healthcaresystem.model.DiagnosticTest;
 import com.cg.healthcaresystem.model.Patient;
+import com.cg.healthcaresystem.model.TestResult;
 import com.cg.healthcaresystem.service.PatientService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -51,10 +52,9 @@ public class PatientController {
         return ResponseEntity.ok(this.patientService.getAllTestResult(patientUserName));
     }
 
-    @GetMapping("/viewTestResult")
-    public List<Patient> viewTestResult() {
-        log.info("INSIDE Patient TestResults!!");
-        return patientService.viewTestResult();
+    @GetMapping("/viewTestResult/{id}")
+    public ResponseEntity<TestResult> viewTestResult(@PathVariable Integer id) {
+        return ResponseEntity.ok(this.patientService.viewTestResult(id));
     }
 
 }

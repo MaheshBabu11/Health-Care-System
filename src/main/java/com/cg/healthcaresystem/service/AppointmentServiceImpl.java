@@ -29,7 +29,7 @@ public class AppointmentServiceImpl implements AppointmentService{
     @Override
     public Set<Appointment> viewAppointments(String patientName)
     {
-        Patient patient=patientRepository.findByName(patientName);
+        Patient patient=patientRepository.findByName(patientName).get(0);
         return (Set<Appointment>) patient.getAppointmentList();
 
     }

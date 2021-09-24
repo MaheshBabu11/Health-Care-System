@@ -4,6 +4,7 @@ package com.cg.healthcaresystem.service;
 import com.cg.healthcaresystem.model.*;
 import com.cg.healthcaresystem.repository.AppointmentRepository;
 import com.cg.healthcaresystem.repository.PatientRepository;
+import com.cg.healthcaresystem.repository.TestResultRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +17,9 @@ import java.util.Set;
 @Slf4j
 @Service
 public class PatientServiceImpl implements PatientService {
-    @Autowired
-    private PatientRepository patientRepository;
-    private AppointmentRepository appointmentRepository;
+    @Autowired private TestResultRepository testResultRepository;
+    @Autowired private PatientRepository patientRepository;
+    @Autowired private AppointmentRepository appointmentRepository;
 
     @Override
     public List<Patient> getAll() {
@@ -57,15 +58,14 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient getAllTestResult(String patientUserName) {
-        Patient patient = patientRepository.findByName(patientUserName);
-        log.info(String.valueOf(patient));
-        return null;
+        Patient patient = patientRepository.findByName(patientUserName).get(0);
+        return patient;
 
     }
     @Override
-    public List<Patient> viewTestResult() {
+    public TestResult viewTestResult(Integer testResultId) {
 
-        return patientRepository.findAll();
+        return testResultRepository.findById(testResultId).get();
     }
 
 

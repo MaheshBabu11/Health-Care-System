@@ -15,6 +15,6 @@ public interface PatientService {
     void updatePatientDetails(int id,Patient patient);
     public Patient viewPatient(int id);
     public Patient getAllTestResult(String patientUserName);
-    public List<Patient> viewTestResult();
+    public TestResult viewTestResult(Integer testResultId);
 
 }

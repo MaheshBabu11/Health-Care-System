@@ -1,6 +1,8 @@
 package com.cg.healthcaresystem.service;
 
+import com.cg.healthcaresystem.model.Appointment;
 import com.cg.healthcaresystem.model.TestResult;
+import com.cg.healthcaresystem.repository.AppointmentRepository;
 import com.cg.healthcaresystem.repository.TestResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +13,9 @@ import java.util.Set;
 @Service
 public class TestResultServiceImpl implements TestResultService{
 
-    @Autowired TestResultRepository testResultRepository;
+    @Autowired
+    private TestResultRepository testResultRepository;
+    private AppointmentRepository appointmentRepository;
 
     @Override
     public TestResult addTestResult(TestResult tr) {
@@ -47,6 +51,10 @@ public class TestResultServiceImpl implements TestResultService{
 
     @Override
     public Set<TestResult> viewResultByAppointment(Integer appointmentId) {
-        return null;
+        Optional<Appointment> appointment = appointmentRepository.findById(appointmentId);
+        if(appointment.isPresent())
+            return appointment.get().getTestResults();
+        else
+            return null;
     }
 }

@@ -16,7 +16,7 @@ public interface AppointmentService {
 
     public Appointment updateAppointment(Appointment appointment);
 
-    public List<Appointment> getAppointmentList(int centreid,String test,int status);
+    public List<Appointment> getAppointmentList(int centreid,String test,boolean status);
 
     public Appointment removeAppointment(Appointment appointment);
 

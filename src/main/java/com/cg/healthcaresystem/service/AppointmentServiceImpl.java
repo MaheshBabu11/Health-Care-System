@@ -4,20 +4,28 @@ package com.cg.healthcaresystem.service;
 
 
 import com.cg.healthcaresystem.model.Appointment;
+import com.cg.healthcaresystem.model.DiagnosticCenter;
 import com.cg.healthcaresystem.model.Patient;
 import com.cg.healthcaresystem.repository.AppointmentRepository;
+import com.cg.healthcaresystem.repository.DiagnosticCenterRepository;
+import com.cg.healthcaresystem.repository.DiagnosticTestRepository;
 import com.cg.healthcaresystem.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import java.util.Set;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AppointmentServiceImpl implements AppointmentService{
     @Autowired
     private AppointmentRepository appointmentrepository;
     private PatientRepository patientRepository;
+    private DiagnosticCenterService diagnosticCenterService;
+    private DiagnosticCenterRepository diagnosticCenterRepository;
+    private DiagnosticTestRepository diagnosticTestRepository;
 
     @Override
     public Appointment addAppointment(Appointment appointment)
@@ -53,10 +61,12 @@ public class AppointmentServiceImpl implements AppointmentService{
         return appointment1;
 
     }
-    public List<Appointment> getAppointmentList(int centreId ,String test,int status)
+    public List<Appointment> getAppointmentList(int centreId ,String test,boolean status)
     {
-
-        return null;
+        Optional<DiagnosticCenter> diagnosticCenter=diagnosticCenterRepository.findById(centreId);
+        List<Appointment> appointments=diagnosticCenterService.getListOfAppointments(diagnosticCenter.get().getName());
+        List<Appointment> appointments1=appointments.stream().filter(appointment -> appointment.isApprovalStatus()==status).filter(appointment -> appointment.getTestResults().equals(diagnosticTestRepository.findByTestName(test))).collect(Collectors.toList());
+        return appointments1;
     }
     public Appointment removeAppointment(Appointment appointment)
     {

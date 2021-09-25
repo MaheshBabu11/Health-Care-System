@@ -55,7 +55,7 @@ public class AppointmentController {
         return new ResponseEntity<>(appointments,HttpStatus.UPGRADE_REQUIRED);
     }
     @GetMapping("view list of appointment  ")
-    public ResponseEntity<List<Appointment>> getAppointmentList(@RequestBody int centreId, @RequestBody String test, @RequestBody int Status)
+    public ResponseEntity<List<Appointment>> getAppointmentList(@RequestBody int centreId, @RequestBody String test, @RequestBody boolean Status)
     {
         return ResponseEntity.ok(this.appointmentService.getAppointmentList(centreId,test,Status));
     }

@@ -28,15 +28,15 @@ public class DiagnosticCenterController {
     }
 
     @GetMapping("/getall")
-    public ResponseEntity<?> getAllDiagnosticCenters()
+    public ResponseEntity<List<DiagnosticCenter>> getAllDiagnosticCenters()
     {
         return ResponseEntity.ok(this.diagnosticCenterService.getAllDiagnosticCenters());
 
     }
 
     @GetMapping("/getbyid/{id}")
-    public DiagnosticCenter fetchById(@PathVariable Integer id) {
-        return diagnosticCenterService.getDiagnosticCenterById(id);
+    public ResponseEntity<DiagnosticCenter> fetchById(@PathVariable Integer id) {
+        return ResponseEntity.ok(this.diagnosticCenterService.getDiagnosticCenterById(id));
 
     }
 

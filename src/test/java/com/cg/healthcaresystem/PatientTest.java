@@ -27,5 +27,13 @@ public class PatientTest {
 
 
     }
+    @Test
+    public void createTest2() {
 
+        Patient patient=new Patient("kaushik","860522294",21,"female");
+
+        Assert.assertEquals(patient,patientService.registerPatient(patient));
+
+
+    }
 }

@@ -19,7 +19,7 @@ public class Appointment {
     private Integer id;
 
     @NotNull(message="Please enter your appointment date")
-    private LocalDate date;
+    private String date;
 
     @NotNull(message="Please enter the approval status")
     private boolean approvalStatus;
@@ -42,7 +42,10 @@ public class Appointment {
     private Set<TestResult> testResults;
 
 
-
+    public Appointment(String date, boolean approvalStatus) {
+        this.date=date;
+        this.approvalStatus = approvalStatus;
+    }
 }
 
 

@@ -16,7 +16,7 @@ public class CsrfTokenResponseHeaderBindingFilter extends OncePerRequestFilter {
     protected static final String RESPONSE_TOKEN_NAME = "X-CSRF-TOKEN";
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, javax.servlet.FilterChain filterChain) throws ServletException, IOException, ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, javax.servlet.FilterChain filterChain) throws  ServletException, IOException {
         CsrfToken token = (CsrfToken) request.getAttribute(REQUEST_ATTRIBUTE_NAME);
 
         if (token != null) {

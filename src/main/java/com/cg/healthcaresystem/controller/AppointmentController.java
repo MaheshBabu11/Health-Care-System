@@ -1,6 +1,7 @@
 package com.cg.healthcaresystem.controller;
 
 import com.cg.healthcaresystem.model.Appointment;
+import com.cg.healthcaresystem.model.Patient;
 import com.cg.healthcaresystem.service.AppointmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,14 @@ public class AppointmentController {
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
-    @GetMapping("/viewAll")
-    public ResponseEntity<Set<Appointment>>viewAllAppointment(@RequestBody String patientName)
+    @GetMapping("/viewAllAppointment/{patientName}")
+    public Set<Appointment>viewAllAppointment(@PathVariable String patientName)
     {
-        Set<Appointment> appointments=appointmentService.viewAppointments(patientName);
-        return new ResponseEntity<>(appointments,HttpStatus.ACCEPTED);
+       // Set<Appointment> appointments=appointmentService.viewAppointments();
+       // return new ResponseEntity<>(appointments,HttpStatus.ACCEPTED);
+      //  return ResponseEntity.ok(this.appointmentService.viewAppointments(patientName));
+        return appointmentService.viewAppointments(patientName);
+
     }
 
     @DeleteMapping("/delete by id")
@@ -41,11 +45,11 @@ public class AppointmentController {
         Appointment appointments=appointmentService.removeAppointment(appointment);
         return new ResponseEntity<>(appointments,HttpStatus.NO_CONTENT);
     }
-    @GetMapping("/view by id")
-    public ResponseEntity<Optional<Appointment>> viewAppointment(@RequestBody int appointmentId)
+    @GetMapping("/view/{id}")
+    public ResponseEntity<Optional<Appointment>> viewAppointment(@PathVariable  int id)
     {
 
-        Optional<Appointment> appointments =appointmentService.viewAppointment(appointmentId);
+        Optional<Appointment> appointments =appointmentService.viewAppointment(id);
         return new ResponseEntity<>(appointments,HttpStatus.UPGRADE_REQUIRED);
     }
     @PutMapping ("/update")
@@ -55,8 +59,8 @@ public class AppointmentController {
         return new ResponseEntity<>(appointments,HttpStatus.UPGRADE_REQUIRED);
     }
     @GetMapping("view list of appointment  ")
-    public ResponseEntity<List<Appointment>> getAppointmentList(@RequestBody int centreId, @RequestBody String test, @RequestBody boolean Status)
+    public ResponseEntity<List<Appointment>> getAppointmentList(@RequestBody int id, @RequestBody String test, @RequestBody boolean Status)
     {
-        return ResponseEntity.ok(this.appointmentService.getAppointmentList(centreId,test,Status));
+        return ResponseEntity.ok(this.appointmentService.getAppointmentList(id,test,Status));
     }
 }

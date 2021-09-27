@@ -15,7 +15,7 @@ import java.util.Set;
 public class Appointment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull(message="Please enter your appointment date")
@@ -34,7 +34,7 @@ public class Appointment {
 
     @OneToMany(targetEntity = DiagnosticCenter.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "diac_apmt", referencedColumnName = "id")
-    private Set<Patient> diagnosticCenter;
+    private Set<DiagnosticCenter> diagnosticCenter;
 
 
     @OneToMany(targetEntity = TestResult.class, cascade = CascadeType.ALL)

@@ -4,6 +4,7 @@ package com.cg.healthcaresystem.model;
 
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
+@AllArgsConstructor
 @Table(name = "Patient")
 public class Patient {
     @Id
@@ -36,6 +38,11 @@ public class Patient {
     @JoinColumn(name ="", referencedColumnName = "id")
     private List<Appointment> AppointmentList;
 
-
+    public Patient(String name, String phoneNo, Integer age, String gender) {
+        this.name = name;
+        this.phoneNo = phoneNo;
+        this.age = age;
+        this.gender = gender;
+    }
 }
 

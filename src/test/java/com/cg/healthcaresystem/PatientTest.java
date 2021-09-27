@@ -7,6 +7,7 @@ import com.cg.healthcaresystem.model.Patient;
 import static org.junit.Assert.*;
 
 import com.cg.healthcaresystem.service.PatientService;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,14 +19,12 @@ public class PatientTest {
 
 
     @Test
-    public void test1() {
+    public void createTest() {
 
-        Patient p=new Patient();
-        p.setName("gaurav");
-        p.setGender("male");
-        p.setAge(22);
-        p.setPhoneNo("632732737");
-        assertEquals(p,patientService.registerPatient(p));
+        Patient patient=new Patient("Mahesh","9605431794",25,"male");
+
+       Assert.assertEquals(patient,patientService.registerPatient(patient));
+
 
     }
 

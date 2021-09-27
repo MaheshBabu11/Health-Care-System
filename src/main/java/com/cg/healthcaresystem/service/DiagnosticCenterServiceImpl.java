@@ -31,11 +31,15 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
     @Override
     public DiagnosticCenter addDiagnosticCenter( DiagnosticCenter diagnosticCenter) {
         return diagnosticCenterRepository.save( diagnosticCenter);
+
     }
 
     @Override
     public DiagnosticCenter getDiagnosticCenterById( Integer diagnosticCenterId) {
-        return diagnosticCenterRepository.findById(diagnosticCenterId).get();
+        Optional<DiagnosticCenter> dc= diagnosticCenterRepository.findById(diagnosticCenterId);
+        if(dc.isPresent())
+            return dc.get();
+        return null;
     }
 
     @Override
@@ -106,12 +110,17 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
 
     @Override
     public List<DiagnosticCenter> removeDiagnosticCenter( Integer id) {
-        DiagnosticCenter dc = null;
-        Optional<DiagnosticCenter> optionalDiagnosticCenter = diagnosticCenterRepository.findById(id);
-        if (optionalDiagnosticCenter.isPresent())
-            dc = optionalDiagnosticCenter.get();
-        diagnosticCenterRepository.deleteById(id);
-        return  diagnosticCenterRepository.findAll();
+
+        //
+        // for(id=53;id<68;id++) {
+            DiagnosticCenter dc = null;
+            Optional<DiagnosticCenter> optionalDiagnosticCenter = diagnosticCenterRepository.findById(id);
+            if (optionalDiagnosticCenter.isPresent())
+                dc = optionalDiagnosticCenter.get();
+            diagnosticCenterRepository.deleteById(id);
+            //return diagnosticCenterRepository.findAll();
+        //}
+        return null;
     }
 
     @Override

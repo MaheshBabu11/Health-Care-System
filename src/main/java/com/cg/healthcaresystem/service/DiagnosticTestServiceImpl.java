@@ -42,10 +42,10 @@ public class DiagnosticTestServiceImpl implements DiagnosticTestService {
     }
 
     @Override
-    public DiagnosticTest updateTestDetails(DiagnosticTest test){
+    public DiagnosticTest updateTestDetails(int id,DiagnosticTest test){
         DiagnosticTest dt = null;
         try {
-        Optional<DiagnosticTest> optionalDiagnosticTest = diagnosticTestRepository.findById(test.getId());
+        Optional<DiagnosticTest> optionalDiagnosticTest = diagnosticTestRepository.findById(id);
 
             if (optionalDiagnosticTest.isPresent())
                 dt = optionalDiagnosticTest.get();

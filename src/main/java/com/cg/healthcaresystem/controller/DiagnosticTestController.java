@@ -36,7 +36,7 @@ public class DiagnosticTestController {
         return new ResponseEntity<>(newTest, HttpStatus.CREATED);
     }
 
-    @ApiOperation("")
+    @ApiOperation("Get test of Diagnostic center")
     @GetMapping("/gettestofdiagnosticcenter/{centerId}")
     public Set<DiagnosticTest> getTestOfDiagnosticCenter(@PathVariable int centerId){
         log.info("Fectch Test of Diagnostic Center");

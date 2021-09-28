@@ -22,7 +22,7 @@ public class PatientTest {
 
 
     @Test
-    public void createTest() {
+    public void registerTestPass() {
 
         Patient patient=new Patient("grv","9605431794",25,"male");
         Patient patient2=new Patient("rohini","34566777",31,"female");
@@ -32,7 +32,7 @@ public class PatientTest {
 
     }
     @Test
-    public void createTest2() {
+    public void registerTestFails() {
 
         Patient patient=new Patient("grv","860522294",null,null);
         Patient patient2=new Patient(null,"860522294",null,"male");

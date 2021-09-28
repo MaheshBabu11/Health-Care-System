@@ -22,4 +22,11 @@ public class DiagnosticTestTest {
 
         Assert.assertEquals(test,diagnosticTestService.addNewTest(test));
     }
+
+    @Test
+    public void addTestFail(){
+        DiagnosticTest test = new DiagnosticTest("140 mg/l","Suger",500,null);
+
+        Assert.assertEquals(test,diagnosticTestService.addNewTest(test));
+    }
 }

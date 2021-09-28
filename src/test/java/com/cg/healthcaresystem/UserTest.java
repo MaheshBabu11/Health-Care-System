@@ -28,13 +28,23 @@ public class UserTest {
         User user2=new User("mahesh",null,"admin");
         User user3=new User(null,"Mahesh","user");
         Assert.assertEquals(user,userService.addUser(user));
-        Assert.assertEquals(user,userService.addUser(user2));
-        Assert.assertEquals(user,userService.addUser(user3));
+        Assert.assertEquals(user2,userService.addUser(user2));
+        Assert.assertEquals(user3,userService.addUser(user3));
     }
 
     @Test
     public  void validateTestPass(){
-
+        User user=new User("admin","password","admin");
+        User user2=new User("demo","demo","admin");
+        Assert.assertEquals(user,userService.validateUser("admin","password"));
+        Assert.assertEquals(user2,userService.validateUser("demo","demo"));
+    }
+    @Test
+    public  void validateTestFail(){
+        User user=new User("admin","password","admin");
+        User user2=new User("demo","demo","admin");
+        Assert.assertEquals(user,userService.validateUser("admin","password"));
+        Assert.assertEquals(user2,userService.validateUser("demo","demo"));
     }
 
 }

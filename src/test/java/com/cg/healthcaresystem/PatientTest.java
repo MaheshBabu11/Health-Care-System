@@ -3,9 +3,6 @@ package com.cg.healthcaresystem;
 
 import com.cg.healthcaresystem.model.Patient;
 
-
-
-
 import com.cg.healthcaresystem.service.PatientService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;

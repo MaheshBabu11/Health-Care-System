@@ -1,6 +1,5 @@
 package com.cg.healthcaresystem.controller;
 
-
 import com.cg.healthcaresystem.model.Patient;
 import com.cg.healthcaresystem.model.TestResult;
 import com.cg.healthcaresystem.service.PatientService;

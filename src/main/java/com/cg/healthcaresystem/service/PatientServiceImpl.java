@@ -53,6 +53,8 @@ public class PatientServiceImpl implements PatientService {
         Optional<Patient> optionalPatient = patientRepository.findById(id);
         if (optionalPatient.isPresent())
             patient = optionalPatient.get();
+        if(patient==null)
+            System.out.println("null");
         return patient;
     }
 

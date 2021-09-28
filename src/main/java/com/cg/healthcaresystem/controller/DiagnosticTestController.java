@@ -37,7 +37,7 @@ public class DiagnosticTestController {
     }
 
     @ApiOperation("")
-    @GetMapping("/gettestofdiagnosticcenter")
+    @GetMapping("/gettestofdiagnosticcenter/{centerId}")
     public Set<DiagnosticTest> getTestOfDiagnosticCenter(@PathVariable int centerId){
         log.info("Fectch Test of Diagnostic Center");
         return diagnosticTestService.getTestOfDiagnosticCenter(centerId);

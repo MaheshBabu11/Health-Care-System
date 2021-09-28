@@ -5,14 +5,16 @@ package com.cg.healthcaresystem.service;
 
 import com.cg.healthcaresystem.model.Appointment;
 import com.cg.healthcaresystem.model.DiagnosticCenter;
+import com.cg.healthcaresystem.model.DiagnosticTest;
 import com.cg.healthcaresystem.model.Patient;
 import com.cg.healthcaresystem.repository.AppointmentRepository;
 import com.cg.healthcaresystem.repository.DiagnosticCenterRepository;
 import com.cg.healthcaresystem.repository.DiagnosticTestRepository;
 import com.cg.healthcaresystem.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 import java.util.Set;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +28,8 @@ public class AppointmentServiceImpl implements AppointmentService{
     private DiagnosticCenterService diagnosticCenterService;
     private DiagnosticCenterRepository diagnosticCenterRepository;
     private DiagnosticTestRepository diagnosticTestRepository;
+    private PatientService patientService;
+    private  DiagnosticTestService diagnosticTestService;
 
     @Override
     public Appointment addAppointment(Appointment appointment)
@@ -77,6 +81,31 @@ public class AppointmentServiceImpl implements AppointmentService{
         else{
             return null;
         }
+    }
+
+    @Override
+    public Appointment addAppointment(int patientId, int testCenterid, int testId,String date) {
+        System.out.println(patientId);
+        System.out.println(testCenterid);
+        System.out.println(testId);
+        System.out.println(date);
+        Patient patient=patientService.viewPatient(patientId);
+        System.out.println(patient.toString());
+       DiagnosticCenter diagnosticCenter=diagnosticCenterService.getDiagnosticCenterById(testCenterid);
+        System.out.println(diagnosticCenter);
+       DiagnosticTest diagnosticTest= diagnosticCenterService.getDiagnosticTestById(testId);
+        System.out.println(diagnosticTest);
+       Appointment appointment=new Appointment();
+       appointment.setApprovalStatus(false);
+       appointment.setPatient((Set<Patient>) patient);
+       appointment.setDate(date);
+       appointment.setDiagnosticCenter((Set<DiagnosticCenter>) diagnosticCenter);
+       appointment.setDiagnosticTests((Set<DiagnosticTest>) diagnosticTest);
+        System.out.println(appointment.toString());
+       appointmentrepository.save(appointment);
+       return appointment;
+
+
     }
 
 }

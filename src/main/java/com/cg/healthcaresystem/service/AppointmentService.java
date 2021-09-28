@@ -21,4 +21,5 @@ public interface AppointmentService {
     public Appointment removeAppointment(Appointment appointment);
 
 
+    public Appointment addAppointment(int patientId, int testCenterid, int testId,String date);
 }

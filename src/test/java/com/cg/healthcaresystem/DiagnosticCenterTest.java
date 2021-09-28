@@ -1,21 +1,17 @@
 package com.cg.healthcaresystem;
 
-import com.cg.healthcaresystem.model.Appointment;
 import com.cg.healthcaresystem.model.DiagnosticCenter;
-
-import com.cg.healthcaresystem.model.DiagnosticTest;
 import com.cg.healthcaresystem.service.DiagnosticCenterService;
-
 import com.cg.healthcaresystem.service.TestService;
+
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
-import java.util.Optional;
+import org.springframework.test.annotation.Rollback;
 
 @SpringBootTest
+@Rollback(value = true)
 public class DiagnosticCenterTest {
 
     @Autowired DiagnosticCenterService diagnosticCenterService;
@@ -81,6 +77,5 @@ public class DiagnosticCenterTest {
     public void getListOfAppointmentsTest() {
 
     }
-
 
 }

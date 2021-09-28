@@ -16,5 +16,5 @@ public interface DiagnosticTestService {
 
     public DiagnosticTest updateTestDetails(DiagnosticTest test);
 
-    public DiagnosticTest removeTestFormDiagnosticCenter(int centerId, DiagnosticTest test);
+    public DiagnosticTest removeTestFormDiagnosticTest(DiagnosticTest test);
 }

@@ -32,5 +32,11 @@ public class DiagnosticTest {
     @JoinColumn(name = "", referencedColumnName = "id")
     private Set<DiagnosticCenter> diagnosticCenters;
 
+    public DiagnosticTest(String normalValue,String testName,double testPrice,String units){
+        this.normalValue = normalValue;
+        this.testName = testName;
+        this.testPrice = testPrice;
+        this.units = units;
+    }
 
 }

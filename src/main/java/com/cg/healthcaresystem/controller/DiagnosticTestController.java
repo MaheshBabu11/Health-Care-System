@@ -53,9 +53,10 @@ public class DiagnosticTestController {
 
     @ApiOperation("Remove test from diagnostic center")
     @DeleteMapping("/removediagnostictest")
-    public ResponseEntity<DiagnosticTest> removeTestFormDiagnosticCenter(@PathVariable int centerId, @Valid @RequestBody DiagnosticTest test){
-
-        return null;
+    public ResponseEntity<DiagnosticTest> removeTestFormDiagnosticCenter(@Valid @RequestBody DiagnosticTest test){
+        DiagnosticTest removeTest = diagnosticTestService.removeTestFormDiagnosticTest(test);
+        log.info("Remove test");
+        return new ResponseEntity<>(removeTest,HttpStatus.NO_CONTENT);
     }
 
 }

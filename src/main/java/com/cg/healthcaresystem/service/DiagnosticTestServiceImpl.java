@@ -53,9 +53,13 @@ public class DiagnosticTestServiceImpl implements DiagnosticTestService {
     }
 
     @Override
-    public DiagnosticTest removeTestFormDiagnosticCenter(int centerId, DiagnosticTest test){
-        DiagnosticCenter c = diagnosticCenterRepository.findById(centerId).get();
-        Set<DiagnosticTest> tests = c.getTests();
-        return  null;
+    public DiagnosticTest removeTestFormDiagnosticTest(DiagnosticTest test){
+        Optional<DiagnosticTest> optionalDiagnosticTest = diagnosticTestRepository.findById(test.getId());
+        if(optionalDiagnosticTest.isPresent()){
+            diagnosticTestRepository.deleteById(test.getId());
+            return test;
+        }else {
+            return null;
+        }
     }
 }

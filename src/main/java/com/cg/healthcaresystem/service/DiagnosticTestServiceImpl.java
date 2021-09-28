@@ -60,7 +60,7 @@ public class DiagnosticTestServiceImpl implements DiagnosticTestService {
 
         }catch (DiagnosticTestNotFoundException e){
             log.info("Diagnostic Test not found");
-            return null;
+            return test;
         }
     }
 

@@ -4,7 +4,7 @@ package com.cg.healthcaresystem;
 import com.cg.healthcaresystem.model.Patient;
 
 
-import static org.junit.Assert.*;
+
 
 import com.cg.healthcaresystem.service.PatientService;
 import org.junit.Assert;

@@ -44,7 +44,7 @@ public class DiagnosticTestController {
     }
 
     @ApiOperation("Update test")
-    @PutMapping("/updatediagnostictest")
+    @PutMapping("/updatediagnostictest/{id}")
     public ResponseEntity<DiagnosticTest> updateTestDetails(@PathVariable int id,@Valid @RequestBody DiagnosticTest test){
         DiagnosticTest updateDiagnosticTest = diagnosticTestService.updateTestDetails(id,test);
         log.info("Update Diagnostic Test Details");

@@ -34,17 +34,23 @@ public class UserTest {
 
     @Test
     public  void validateTestPass(){
-        User user=new User("admin","password","admin");
-        User user2=new User("demo","demo","admin");
+        User user=new User("admin","password",null);
+        User user2=new User("demo","demo",null);
         Assert.assertEquals(user,userService.validateUser("admin","password"));
         Assert.assertEquals(user2,userService.validateUser("demo","demo"));
     }
     @Test
     public  void validateTestFail(){
-        User user=new User("admin","password","admin");
-        User user2=new User("demo","demo","admin");
-        Assert.assertEquals(user,userService.validateUser("admin","password"));
-        Assert.assertEquals(user2,userService.validateUser("demo","demo"));
+        User user=new User("admin","password",null);
+        User user2=new User("demo","demo",null);
+        Assert.assertEquals(user,userService.validateUser("admi","password"));
+        Assert.assertEquals(user2,userService.validateUser("dem","demo"));
+    }
+    @Test
+    public void validateUserNotFoundException(){
+        User user=new User("ad","pass",null);
+        Assert.assertEquals(user,userService.validateUser("ad","pass"));
+
     }
 
 }

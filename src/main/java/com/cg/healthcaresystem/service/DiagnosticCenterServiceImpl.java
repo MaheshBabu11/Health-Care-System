@@ -1,5 +1,6 @@
 package com.cg.healthcaresystem.service;
 
+import com.cg.healthcaresystem.exception.DiagnosticCenterNotFoundException;
 import com.cg.healthcaresystem.model.Appointment;
 import com.cg.healthcaresystem.model.DiagnosticCenter;
 import com.cg.healthcaresystem.model.DiagnosticTest;
@@ -34,19 +35,23 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
     }
 
     @Override
-    public DiagnosticCenter getDiagnosticCenterById( Integer diagnosticCenterId) {
+    public DiagnosticCenter getDiagnosticCenterById( Integer diagnosticCenterId) throws DiagnosticCenterNotFoundException{
         Optional<DiagnosticCenter> dc= diagnosticCenterRepository.findById(diagnosticCenterId);
         if(dc.isPresent())
             return dc.get();
-        return null;
+        else
+            throw new DiagnosticCenterNotFoundException("Diagnostic Center with this Id is not Present");
+
     }
 
     @Override
-    public DiagnosticCenter updateDiagnosticCenter( DiagnosticCenter diagnosticCenter) {
+    public DiagnosticCenter updateDiagnosticCenter( DiagnosticCenter diagnosticCenter) throws DiagnosticCenterNotFoundException {
         DiagnosticCenter dc = null;
         Optional<DiagnosticCenter> optionalDiagnosticCenter = diagnosticCenterRepository.findById(diagnosticCenter.getId());
         if (optionalDiagnosticCenter.isPresent())
             dc = optionalDiagnosticCenter.get();
+        else
+            throw new DiagnosticCenterNotFoundException("Diagnostic Center with this Id is not Present");
         dc.setName( diagnosticCenter.getName() );
         dc.setAddress( diagnosticCenter.getAddress() );
         dc.setContactNo( diagnosticCenter.getContactNo() );

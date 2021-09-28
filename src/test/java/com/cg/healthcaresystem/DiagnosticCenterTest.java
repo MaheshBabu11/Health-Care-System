@@ -1,5 +1,7 @@
 package com.cg.healthcaresystem;
 
+import com.cg.healthcaresystem.exception.DiagnosticCenterNotFoundException;
+import com.cg.healthcaresystem.exception.DiagnosticTestNotFoundException;
 import com.cg.healthcaresystem.model.DiagnosticCenter;
 import com.cg.healthcaresystem.service.DiagnosticCenterService;
 import com.cg.healthcaresystem.service.TestService;
@@ -31,7 +33,7 @@ public class DiagnosticCenterTest {
     }
 
     @Test
-    public void getDiagnosticCenterByIdTest(){
+    public void getDiagnosticCenterByIdTest() throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException {
 
 
         DiagnosticCenter dc= diagnosticCenterService.getDiagnosticCenterById(1);
@@ -40,7 +42,7 @@ public class DiagnosticCenterTest {
     }
 
     @Test
-    public void updateDiagnosticCenterTest() {
+    public void updateDiagnosticCenterTest() throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException {
         DiagnosticCenter diagnosticCenter= diagnosticCenterService.getDiagnosticCenterById(4);
         diagnosticCenter.setName("Eastern Diagnostics");
         DiagnosticCenter dc = diagnosticCenterService.updateDiagnosticCenter(diagnosticCenter);

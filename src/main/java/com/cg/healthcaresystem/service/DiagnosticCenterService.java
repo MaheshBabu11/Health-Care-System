@@ -1,5 +1,7 @@
 package com.cg.healthcaresystem.service;
 
+import com.cg.healthcaresystem.exception.DiagnosticCenterNotFoundException;
+import com.cg.healthcaresystem.exception.DiagnosticTestNotFoundException;
 import com.cg.healthcaresystem.model.Appointment;
 import com.cg.healthcaresystem.model.DiagnosticCenter;
 import com.cg.healthcaresystem.model.DiagnosticTest;
@@ -14,9 +16,9 @@ public interface DiagnosticCenterService {
 
     public DiagnosticCenter addDiagnosticCenter( DiagnosticCenter diagnosticCenter);
 
-    public DiagnosticCenter getDiagnosticCenterById( Integer diagnosticCenterId);
+    public DiagnosticCenter getDiagnosticCenterById( Integer diagnosticCenterId) throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException;
 
-    public DiagnosticCenter updateDiagnosticCenter( DiagnosticCenter diagnosticCenter);
+    public DiagnosticCenter updateDiagnosticCenter( DiagnosticCenter diagnosticCenter) throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException;
 
     public DiagnosticTest viewTestDetails( Integer diagnosticCenterId, String testName);
 

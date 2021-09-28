@@ -3,6 +3,8 @@ package com.cg.healthcaresystem.service;
 
 
 
+import com.cg.healthcaresystem.exception.DiagnosticCenterNotFoundException;
+import com.cg.healthcaresystem.exception.DiagnosticTestNotFoundException;
 import com.cg.healthcaresystem.model.Appointment;
 import com.cg.healthcaresystem.model.DiagnosticCenter;
 import com.cg.healthcaresystem.model.DiagnosticTest;
@@ -84,7 +86,7 @@ public class AppointmentServiceImpl implements AppointmentService{
     }
 
     @Override
-    public Appointment addAppointment(int patientId, int testCenterid, int testId,String date) {
+    public Appointment addAppointment(int patientId, int testCenterid, int testId,String date) throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException {
         System.out.println(patientId);
         System.out.println(testCenterid);
         System.out.println(testId);

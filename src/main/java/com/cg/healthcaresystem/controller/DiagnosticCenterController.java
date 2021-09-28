@@ -1,5 +1,7 @@
 package com.cg.healthcaresystem.controller;
 
+import com.cg.healthcaresystem.exception.DiagnosticCenterNotFoundException;
+import com.cg.healthcaresystem.exception.DiagnosticTestNotFoundException;
 import com.cg.healthcaresystem.model.DiagnosticCenter;
 import com.cg.healthcaresystem.model.DiagnosticTest;
 import com.cg.healthcaresystem.service.DiagnosticCenterService;
@@ -35,14 +37,13 @@ public class DiagnosticCenterController {
     }
 
     @GetMapping("/getbyid/{id}")
-    public ResponseEntity<DiagnosticCenter> fetchById(@PathVariable Integer id) {
+    public ResponseEntity<DiagnosticCenter> fetchById(@PathVariable Integer id) throws DiagnosticCenterNotFoundException, DiagnosticTestNotFoundException {
         return ResponseEntity.ok(this.diagnosticCenterService.getDiagnosticCenterById(id));
 
     }
 
     @PutMapping("/update")
-    public ResponseEntity<DiagnosticCenter> update(@RequestBody DiagnosticCenter diagnosticCenter)
-    {
+    public ResponseEntity<DiagnosticCenter> update(@RequestBody DiagnosticCenter diagnosticCenter) throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException {
         return ResponseEntity.ok(this.diagnosticCenterService.updateDiagnosticCenter(diagnosticCenter));
     }
 

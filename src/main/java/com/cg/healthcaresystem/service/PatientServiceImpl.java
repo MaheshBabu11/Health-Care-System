@@ -1,6 +1,7 @@
 package com.cg.healthcaresystem.service;
 
 
+import com.cg.healthcaresystem.exception.PatientNotFoundException;
 import com.cg.healthcaresystem.model.*;
 import com.cg.healthcaresystem.repository.AppointmentRepository;
 import com.cg.healthcaresystem.repository.PatientRepository;
@@ -33,17 +34,27 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void updatePatientDetails(int id, Patient patient) {
+    public Patient updatePatientDetails(int id, Patient patient) {
         Patient pt = null;
-        Optional<Patient> optionalPatient = patientRepository.findById(id);
-        if (optionalPatient.isPresent())
-            pt = optionalPatient.get();
-        pt.setName(patient.getName());
-        pt.setPhoneNo(patient.getPhoneNo());
-        pt.setAge(patient.getAge());
-        pt.setGender(patient.getGender());
+        try {
+            Optional<Patient> optionalPatient = patientRepository.findById(id);
 
-        patientRepository.save(pt);
+            if (optionalPatient.isPresent())
+                pt = optionalPatient.get();
+            else {
+                throw new PatientNotFoundException("Patient not found");
+            }
+            pt.setName(patient.getName());
+            pt.setPhoneNo(patient.getPhoneNo());
+            pt.setAge(patient.getAge());
+            pt.setGender(patient.getGender());
+
+            return patientRepository.save(pt);
+        }
+        catch (PatientNotFoundException e){
+            log.info("Patient not found");
+            return null;
+        }
     }
 
     @Override

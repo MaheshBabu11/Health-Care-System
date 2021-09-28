@@ -42,4 +42,33 @@ public class PatientTest {
         Assert.assertEquals(patient,patientService.registerPatient(patient3));
 
     }
+    @Test
+    public void updateTestDetailsPass(){
+
+    }
+
+    @Test
+    public void viewTestPass() {
+        Patient patient=new Patient("rish","388292929",24,"male");
+        patient.setAppointmentList(null);
+        patient.setPatientid(2);
+        Assert.assertEquals(patient,patientService.viewPatient(2));
+
+    }
+    @Test
+    public void viewTestFail() {
+        Patient patient=new Patient("rish","388292929",24,"male");
+        patient.setAppointmentList(null);
+        patient.setPatientid(3);
+        Assert.assertEquals(patient,patientService.viewPatient(3));
+    }
+    @Test
+    public void viewTestResultPass() {
+
+    }
+
+    @Test
+    public void getAllTestResultPass(){
+
+    }
 }

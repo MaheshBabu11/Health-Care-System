@@ -25,6 +25,8 @@ public class CsrfTokenResponseHeaderBindingFilter extends OncePerRequestFilter {
             response.setHeader(RESPONSE_TOKEN_NAME, token.getToken());
         }
 
+
+
         filterChain.doFilter(request, response);
     }
 }

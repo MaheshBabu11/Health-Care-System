@@ -3,11 +3,10 @@ package com.cg.healthcaresystem.service;
 import com.cg.healthcaresystem.model.Appointment;
 import com.cg.healthcaresystem.model.DiagnosticCenter;
 import com.cg.healthcaresystem.model.DiagnosticTest;
-import com.cg.healthcaresystem.model.Patient;
 import com.cg.healthcaresystem.repository.AppointmentRepository;
 import com.cg.healthcaresystem.repository.DiagnosticCenterRepository;
 import com.cg.healthcaresystem.repository.DiagnosticTestRepository;
-import com.cg.healthcaresystem.repository.TestRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,28 +74,20 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
         {
             DiagnosticTest test= diagnosticTestRepository.findByTestName(testName).get(0);
             return test;
-            //diagnosticTestRepository.findByTestName(testName);
         }
-        /*while (value.hasNext()) {
-            DiagnosticTest t= value.next();
-        }*/
+
         return null;
     }
 
     @Override
     public DiagnosticTest addTest( Integer diagnosticCenterId, Integer testId) {
-        //DiagnosticTest t= testRepository.getById(testId);
         DiagnosticTest t=diagnosticTestRepository.findById(testId).get();
         DiagnosticCenter c=diagnosticCenterRepository.findById(diagnosticCenterId).get();
         DiagnosticCenter c1=diagnosticCenterRepository.findById(diagnosticCenterId).get();
         Set<DiagnosticTest> newTests= c.getTests();
         newTests.add(t);
         c.setTests(newTests);
-        /*Set<DiagnosticCenter> newDiagnosticCenters =t.getDiagnosticCenters();
-        newDiagnosticCenters.add(c1);
-        t.setDiagnosticCenters(newDiagnosticCenters);*/
-        //c.getTests().add(t);
-        //t.getDiagnosticCenters().add(c);
+
         diagnosticTestRepository.saveAndFlush(t);
         diagnosticCenterRepository.saveAndFlush(c);
         return t;
@@ -110,17 +101,12 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService{
 
     @Override
     public List<DiagnosticCenter> removeDiagnosticCenter( Integer id) {
-
-        //
-        // for(id=53;id<68;id++) {
-            DiagnosticCenter dc = null;
-            Optional<DiagnosticCenter> optionalDiagnosticCenter = diagnosticCenterRepository.findById(id);
-            if (optionalDiagnosticCenter.isPresent())
-                dc = optionalDiagnosticCenter.get();
-            diagnosticCenterRepository.deleteById(id);
-            //return diagnosticCenterRepository.findAll();
-        //}
-        return null;
+        DiagnosticCenter dc = null;
+        Optional<DiagnosticCenter> optionalDiagnosticCenter = diagnosticCenterRepository.findById(id);
+        if (optionalDiagnosticCenter.isPresent())
+            dc = optionalDiagnosticCenter.get();
+        diagnosticCenterRepository.deleteById(id);
+        return diagnosticCenterRepository.findAll();
     }
 
     @Override

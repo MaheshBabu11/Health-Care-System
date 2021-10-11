@@ -3,6 +3,7 @@ package com.cg.healthcaresystem;
 
 import com.cg.healthcaresystem.model.Patient;
 
+import com.cg.healthcaresystem.model.User;
 import com.cg.healthcaresystem.service.PatientService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -66,6 +67,13 @@ public class PatientTest {
 
     @Test
     public void getAllTestResultPass(){
+
+    }
+    @Test
+    public void PatientNotFoundExcetion(){
+        Patient patient=new Patient("grhv","9948844994",31,null);
+
+        Assert.assertEquals(patient,patientService.updatePatientDetails(93,patient));
 
     }
 }

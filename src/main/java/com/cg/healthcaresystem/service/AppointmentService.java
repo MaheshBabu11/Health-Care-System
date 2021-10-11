@@ -1,4 +1,6 @@
 package com.cg.healthcaresystem.service;
+import com.cg.healthcaresystem.exception.DiagnosticCenterNotFoundException;
+import com.cg.healthcaresystem.exception.DiagnosticTestNotFoundException;
 import com.cg.healthcaresystem.model.Appointment;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +23,5 @@ public interface AppointmentService {
     public Appointment removeAppointment(Appointment appointment);
 
 
-    public Appointment addAppointment(int patientId, int testCenterid, int testId,String date);
+    public Appointment addAppointment(int patientId, int testCenterid, int testId,String date) throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException;
 }

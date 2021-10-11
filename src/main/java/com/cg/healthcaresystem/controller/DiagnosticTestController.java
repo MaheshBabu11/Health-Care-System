@@ -44,9 +44,9 @@ public class DiagnosticTestController {
     }
 
     @ApiOperation("Update test")
-    @PutMapping("/updatediagnostictest")
-    public ResponseEntity<DiagnosticTest> updateTestDetails(@Valid @RequestBody DiagnosticTest test){
-        DiagnosticTest updateDiagnosticTest = diagnosticTestService.updateTestDetails(test);
+    @PutMapping("/updatediagnostictest/{id}")
+    public ResponseEntity<DiagnosticTest> updateTestDetails(@PathVariable int id,@Valid @RequestBody DiagnosticTest test){
+        DiagnosticTest updateDiagnosticTest = diagnosticTestService.updateTestDetails(id,test);
         log.info("Update Diagnostic Test Details");
         return new ResponseEntity<>(updateDiagnosticTest,HttpStatus.ACCEPTED);
     }

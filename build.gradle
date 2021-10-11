@@ -5,9 +5,15 @@ plugins {
 }
 
 group = 'com.cg'
-version = '0.0.1-SNAPSHOT'
+version = '1.1'
 sourceCompatibility = '1.8'
 
+jar {
+	manifest {
+		attributes 'Main-Class': 'com.cg.healthcaresystem.HealthCareSystemApplication'
+	}
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor

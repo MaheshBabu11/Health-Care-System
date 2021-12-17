@@ -1,6 +1,6 @@
 
 name: My ci things
-on: [push]
+on: [commit]
 jobs:
   bump:
     runs-on: ubuntu-latest

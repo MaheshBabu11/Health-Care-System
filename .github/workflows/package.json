@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "test:ci": "jest --ci --runInBand --coverage"
+  }
+}
